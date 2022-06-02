@@ -1,3 +1,3 @@
 class Profile < ApplicationRecord
-  belongs_to :profilable, polymorphic: true
+  belongs_to :profilable, polymorphic: true, dependent: :destroy
 end
