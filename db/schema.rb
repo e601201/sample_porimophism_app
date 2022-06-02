@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_01_134536) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_02_065738) do
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "profilable_type", null: false
     t.integer "profilable_id", null: false
-    t.string "disription"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "book_id", null: false
+    t.index ["book_id"], name: "index_profiles_on_book_id"
     t.index ["profilable_type", "profilable_id"], name: "index_profiles_on_profilable"
   end
 
@@ -32,4 +40,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_01_134536) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "profiles", "books"
 end
